@@ -1,0 +1,326 @@
+/* ==========================================
+   1. VARIABLES DE COLOR Y RESETEO SCI-FI
+   ========================================== */
+:root {
+    --bg-dark: #0b0e14;
+    --bg-card: #151922;
+    --portal-green: #00ff66;
+    --portal-glow: rgba(0, 255, 102, 0.5);
+    --dimension-purple: #9b51e0;
+    --purple-glow: rgba(155, 81, 224, 0.5);
+    --text-main: #ffffff;
+    --text-muted: #a0aec0;
+    --gold: #f1c40f;
+    --danger: #ff3838;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 255, 102, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(155, 81, 224, 0.08) 0%, transparent 40%);
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. HEADER Y TÍTULO NEÓN
+   ========================================== */
+.main-header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    background: linear-gradient(180deg, #111622 0%, #0b0e14 100%);
+    border-bottom: 2px solid var(--portal-green);
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.app-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    text-shadow: 0 0 10px var(--portal-green), 0 0 20px var(--portal-green), 0 0 30px rgba(0, 255, 102, 0.5);
+    margin-bottom: 1.5rem;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { text-shadow: 0 0 10px var(--portal-green), 0 0 20px var(--portal-green); }
+    100% { text-shadow: 0 0 15px var(--portal-green), 0 0 30px var(--portal-green), 0 0 40px var(--portal-green); }
+}
+
+/* ==========================================
+   3. MENÚ DE NAVEGACIÓN PORTAL
+   ========================================== */
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+.nav-btn {
+    background: rgba(21, 25, 34, 0.9);
+    color: var(--text-main);
+    border: 2px solid var(--portal-green);
+    padding: 0.7rem 1.8rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--portal-green);
+    color: #000000;
+    box-shadow: 0 0 25px var(--portal-green), 0 0 50px var(--portal-green);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.btn-special {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.2);
+}
+
+.btn-special:hover,
+.btn-special.active {
+    background: var(--gold);
+    color: #000000;
+    box-shadow: 0 0 25px var(--gold), 0 0 50px var(--gold);
+}
+
+/* ==========================================
+   4. FILTROS Y CONTROLES
+   ========================================== */
+.controls-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2rem 0;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.search-input, .filter-select {
+    background: var(--bg-card);
+    border: 2px solid var(--dimension-purple);
+    color: var(--text-main);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(155, 81, 224, 0.2);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input:focus, .filter-select:focus {
+    border-color: var(--portal-green);
+    box-shadow: 0 0 20px var(--portal-green);
+}
+
+/* ==========================================
+   5. CONTENEDOR Y TARJETAS HOLOGRÁFICAS
+   ========================================== */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.data-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 255, 102, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.data-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--portal-green), var(--dimension-purple));
+}
+
+.data-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--portal-green);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 102, 0.4);
+}
+
+.data-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-main);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.info-label {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label span {
+    font-weight: 700;
+}
+
+/* ==========================================
+   6. BOTONES DE ACCIÓN SCI-FI
+   ========================================== */
+.btn-add-fav {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 12px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.1);
+}
+
+.btn-add-fav:hover {
+    background: var(--gold);
+    color: #000000;
+    box-shadow: 0 0 20px var(--gold), 0 0 35px var(--gold);
+    transform: scale(1.02);
+}
+
+.btn-remove-fav {
+    background: transparent;
+    border: 2px solid var(--danger);
+    color: var(--danger);
+    padding: 12px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 56, 56, 0.1);
+}
+
+.btn-remove-fav:hover {
+    background: var(--danger);
+    color: var(--text-main);
+    box-shadow: 0 0 20px var(--danger), 0 0 35px var(--danger);
+    transform: scale(1.02);
+}
+
+/* ==========================================
+   7. MENSAJES Y FOOTER
+   ========================================== */
+.loading-text {
+    text-align: center;
+    width: 100%;
+    font-size: 1.4rem;
+    margin: 4rem 0;
+    color: var(--portal-green);
+    grid-column: 1 / -1;
+    text-shadow: 0 0 15px var(--portal-green);
+    animation: blink 1.5s infinite alternate;
+}
+
+@keyframes blink {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.dynamic-footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: #080a0f;
+    margin-top: auto;
+    color: var(--text-muted);
+    font-size: 1rem;
+    border-top: 2px solid var(--dimension-purple);
+    box-shadow: 0 -5px 20px rgba(155, 81, 224, 0.2);
+}
+
+.dynamic-footer strong {
+    color: var(--portal-green);
+    text-shadow: 0 0 8px var(--portal-green);
+}
+
+/* ==========================================
+   8. MEDIA QUERIES (RESPONSIVE)
+   ========================================== */
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 2rem;
+    }
+    .grid-container {
+        padding: 1.5rem 1rem;
+        gap: 20px;
+    }
+    .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
